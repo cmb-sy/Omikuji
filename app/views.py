@@ -3,7 +3,7 @@ from flask import Flask
 from flask import request, render_template
 # from app import OmikuziContent
 # from app import db_session
-
+# coding: utf-8
 app = Flask(__name__)
 omikuzi_list = ["大吉","中吉","小吉","吉","半吉","末吉","凶","大凶"]
 
