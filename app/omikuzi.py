@@ -7,6 +7,10 @@ app = Flask(__name__)
 omikuzi_list = ["大吉","中吉","小吉","吉","半吉","末吉","凶","大凶"]
 
 @app.route("/",methods=["POST","GET"])
+def main():
+    return render_template("main.html")
+
+@app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
         a = random.choice(omikuzi_list)
