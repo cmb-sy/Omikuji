@@ -1,10 +1,9 @@
 import random
 from flask import Flask
 from flask import request, render_template
-# from app import OmikuziContent
-# from app import db_session
+from app.models import OmikuziContent
+from app import db, app
 
-app = Flask(__name__)
 omikuzi_list = ["大吉","中吉","小吉","吉","半吉","末吉","凶","大凶"]
 
 @app.route("/",methods=["POST","GET"])
@@ -22,9 +21,11 @@ def index():
 def post():
     title = request.form["title"]
     body = request.form["body"]
-    content = OmikuziContent(title,body)
-    db_session.add(content)
-    db_session.commit()
+    omikuzicontent = OmikuziContent()
+    omikuzicontent.title = title
+    omikuzicontent.body = body
+    db.session.add(omikuzicontent)
+    db.session.commit()
     return self_omikuzi()
 
 @app.route("/self_omikuzi",methods=["POST","GET"])
