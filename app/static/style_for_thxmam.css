@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family:  "Yu Gothic Medium";
+}
+
+.home-content{
+    text-align: center;
+    margin-top: 10%;
+}
+
+.home-content p{
+    font-size: 1.125rem;
+}
+
+.big-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#home {
+    background-image: url(images/fire.jpg);
+    min-height: 140vh;
+}
+
+.button{
+    background: brown;
+    color: white;
+    font-size: 14pt;
+    padding-top: 6px;
+    margin-top: 20px;
+    line-height: 2em;
+    width: 15em;
+    border: 2px solid brown;    /* 枠の指定 */
+}
+
+.button:hover{
+    background: white;
+    color: brown;
+}
+
+.button2{
+    background: brown;
+    color: white;
+    font-size: 14pt;
+    padding-top: 6px;
+    margin: 5px auto;
+    line-height: 2em;
+    width: 15em;
+    border: 2px solid brown;    /* 枠の指定 */
+}
+
+.button2:hover{
+    background: white;
+    color: brown;
+}
+
+.box15 {
+    padding: 1em 0.5em;
+    margin: 2em auto;
+    color: #565656;
+    background: #ffeaea;
+    box-shadow: 0px 0px 0px 10px #ffeaea;
+    border: dashed 2px #ffc3c3;
+    border-radius: 8px;
+    width: 550px;
+    text-align: center;
+}
+.box15 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.box16 {
+    padding: 1em 0.5em;
+    margin: 2em auto;
+    color: #ffffff;
+    background: #1155b9;
+    box-shadow: 0px 0px 0px 10px #1155b9;
+    border: dashed 2px #1c30e6;
+    border-radius: 8px;
+    width: 550px;
+    text-align: center;
+}
+.box16 p {
+    margin: 0; 
+    padding: 0;
+}
