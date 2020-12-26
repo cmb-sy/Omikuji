@@ -1,5 +1,4 @@
 import random
-<<<<<<< HEAD
 from app.models import OmikuziTitle,User,OmikuziContent
 from app import db, app
 from flask import (
@@ -7,9 +6,6 @@ from flask import (
     abort, redirect, url_for,flash, Flask)
 from hashlib import sha256
 from app import key
-=======
-
->>>>>>> main
 
 omikuzi_list = ["大吉","中吉","小吉","吉","半吉","末吉","凶","大凶"]
 
@@ -28,7 +24,6 @@ def index():
         return render_template("result.html",main_omikuzi=main_omikuzi)
     return render_template("index.html")
 
-<<<<<<< HEAD
 @app.route("/add",methods=["POST"])
 def add():
     main_title = request.form["main_title"]
@@ -94,9 +89,6 @@ def registar():
 def logout():
     session.pop("user_name", None)
     return redirect(url_for("top",status="logout"))
-
-=======
->>>>>>> main
 
 if __name__ == "__main__":
     app.run(debug=True)
