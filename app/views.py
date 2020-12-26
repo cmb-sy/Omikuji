@@ -9,14 +9,6 @@ from app import key
 
 omikuzi_list = ["大吉","中吉","小吉","吉","半吉","末吉","凶","大凶"]
 
-@app.route("/plus",methods=["POST"])
-def plus():
-    m = User.query.filter_by().first()
-    m.balance += 500
-    db.session.add(m)
-    db.session.commit()
-    return render_template("main.html",m=m)
-
 @app.route("/job")
 def job():
     return render_template("job.html")
@@ -26,40 +18,81 @@ def thxmam():
     #500円追加する処理
     return render_template("thxmam.html")
 
+@app.route("/plus_thxman",methods=["POST"])
+def plus_thxman():
+    m = User.query.filter_by().first()
+    m.balance += 500
+    db.session.add(m)
+    db.session.commit()
+    return render_template("main.html",m=m)
+
 @app.route("/job/NYsgreet")
 def NYsgreet():
     #3000円追加する処理
     return render_template("NYsgreet.html")
 
+@app.route("/plus_NYsgreet",methods=["POST"])
+def plus_NYsgreet():
+    m = User.query.filter_by().first()
+    m.balance += 3000
+    db.session.add(m)
+    db.session.commit()
+    return render_template("main.html",m=m)
+
+
 @app.route("/job/oosoji")
 def oosoji():
-    sukima_okane = [500, 1000, 2000, 5000]
-    okane = random.choice(sukima_okane)
     #okaneの中身を追加する処理
-    return render_template("oosoji.html", okane=okane)
+    return render_template("oosoji.html")
+
+@app.route("/plus_oosoji",methods=["POST"])
+def plus_oosoji():
+    m = User.query.filter_by().first()
+    m.balance += 1000
+    db.session.add(m)
+    db.session.commit()
+    return render_template("main.html",m=m)
+
 
 @app.route("/job/nengajo")
 def nengajo():
-    tousen_okane = [1000, 2000, 3000, 5000]
-    tousen = random.choice(tousen_okane)
-    #tousenの中身を追加する処理
-    return render_template("nengajo.html", tousen=tousen)
+    return render_template("nengajo.html")
+
+@app.route("/plus_nengajo",methods=["POST"])
+def plus_nengajo():
+    m = User.query.filter_by().first()
+    m.balance += 2000
+    db.session.add(m)
+    db.session.commit()
+    return render_template("main.html",m=m)
+
 
 @app.route("/job/hatsuhinode")
 def hatushinode():
     #1000円追加する処理
     return render_template("hatsuhinode.html")
 
+@app.route("/plus_hatsuhinode",methods=["POST"])
+def plus_hatsuhinode():
+    m = User.query.filter_by().first()
+    m.balance += 1000
+    db.session.add(m)
+    db.session.commit()
+    return render_template("main.html",m=m)
+
+
 @app.route("/job/hatsuyume")
 def hatsuyume():
-    kingakus = [0, 2000]
-    kingaku = random.choice(kingakus)
-    if kingaku == 0:
-        kekka = "悪い夢だった。お金は増えない。"
-    else:
-        #2000円追加する処理
-        kekka = "良い夢だった。2000円増えた。"
-    return render_template("hatsuyume.html", kekka=kekka)
+    return render_template("hatsuyume.html")
+
+@app.route("/plus_hatsuyume",methods=["POST"])
+def plus_hatsuyume():
+    m = User.query.filter_by().first()
+    m.balance += 1000
+    db.session.add(m)
+    db.session.commit()
+    return render_template("main.html",m=m)
+
 
 @app.route("/",methods=["POST","GET"])
 def first():
