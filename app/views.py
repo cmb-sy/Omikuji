@@ -7,7 +7,6 @@ from flask import (
 from hashlib import sha256
 from app import key
 
-omikuzi_list = ["大吉","中吉","小吉","吉","半吉","末吉","凶","大凶"]
 pre_money = 0
 
 @app.route("/job")
@@ -107,26 +106,11 @@ def first():
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
-        # a = random.choice(omikuzi_list)
-        # if a == "大吉":
-        #     mov = '/static/videos/daikichi_f.mp4'
-        # elif a == "吉":
-        #     mov = '/static/videos/kiti_f.mp4'
-        # elif a == "中吉":
-        #     mov = '/static/videos/tyu_f.mp4'
-        # elif a == "小吉":89
-        #     mov = '/static/videos/sho_f.mp4'
-        # elif a == "半吉":
-        #     mov = '/static/videos/han_f.mp4'
-        # elif a == "末吉":
-        #     mov = '/static/videos/sue_f.mp4'
-        # elif a == "凶":
-        #     mov = '/static/videos/kyo_f.mp4'
-        # elif a == "大凶":
-        #     mov = '/static/videos/daikyo_f.mp4'
-        # else:
-        #     raise Exception('Error!')
-        pay = int(request.form['money'])
+        try:
+            pay = int(request.form['money'])
+        except ValueError:
+            content = "正しい金額を入力してください"
+            return render_template("index.html", content=content)
         m = User.query.filter_by().first()
         m.balance -= pay
         if m.balance < 0:
