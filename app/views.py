@@ -20,27 +20,23 @@ def first():
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
-        a = random.choice(omikuzi_list)
-        return render_template("result.html",a=a)
+        main_omikuzi = random.choice(omikuzi_list)
+        return render_template("result.html",main_omikuzi=main_omikuzi)
     return render_template("index.html")
 
-@app.route("/add",methods=["POST","GET"])
-def post():
-    main_title = request.form["title"]
-    omikuzititle = OmikuziTitle()
-    omikuzititle.main_title = main_title
-    db.session.add(omikuzititle)
+@app.route("/add",methods=["POST"])
+def add():
+    main_title = request.form["main_title"]
+    body = request.form["body"]
+    omikuzititles = OmikuziTitle(main_title,body)
+    db.session.add(omikuzititles)
     db.session.commit()
-    return redirect(url_for('self_omikuzi'))
+    return self_omikuzi()
 
-@app.route("/self_omikuzi",methods=["POST","GET"])
+@app.route("/self_omikuzi",methods=["POST"])
 def self_omikuzi():
-    if request.method == "GET":
-        #POSTならエラー
-        omikuzititle = OmikuziTitle()
-        omikuzi_main_title = omikuzititle.main_title
-        return render_template("self.html", omikuzi_title=omikuzi_main_title)
-    return render_template("self.html")
+        omikuzi_main_title = OmikuziTitle.query.all()
+        return render_template("self.html", omikuzi_main_title=omikuzi_main_title)
 
 @app.route("/top")
 def top():
