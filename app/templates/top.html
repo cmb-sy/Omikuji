@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
-
-</head>
-<body>
-    <div id="home" class="big-bg">
-        <header class ="page-header">
-            <h1>ログイン</h1>
-        </header>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+    </head>
+    <body>
+        <div id="home" class="big-bg">
+            <header class ="page-header">
+                <h1>ログイン</h1>
+            </header>
           
-        <div class="home-content wrapper">
-            <form action="/login" method="post">
-            <input type="text" name="user_name" placeholder="user name" size="37"></br>
-            <input type="password" name="password" placeholder="password" size="37"></br>
-            <input type="submit" value="Login" class="button">
-        </form>
+            <div class="home-content wrapper">
+                <form action="/login" method="post">
+                    <input type="text" name="user_name" placeholder="user name" size="37"></br>
+                    <input type="password" name="password" placeholder="password" size="37"></br>
+                    <input type="submit" value="Login" class="button">
+                </form>
 
-        {% if status == "user_notfound" %}
-        <p>ユーザが見つかりません。新規登録しましょう。</p>
-        {% elif status == "wrong_password" %}
-        <p>パスワードが間違っています。</p>
-        {% elif status == "logout" %}
-        <p>ログアウトが完了しました。</p>
-        {% endif %}
+                {% if status == "user_notfound" %}
+                <p>ユーザが見つかりません。新規登録しましょう。</p>
+                {% elif status == "wrong_password" %}
+                <p>パスワードが間違っています。</p>
+                {% elif status == "logout" %}
+                <p>ログアウトが完了しました。</p>
+                {% endif %}
 
-        <a href="/newcomer">新規登録はこちら</a>   
-        </div>   
-    
-    </div>
-</body>
+                <a href="/newcomer">新規登録はこちら</a>   
+            </div>   
+        </div>
+    </body>
 </html>
 
