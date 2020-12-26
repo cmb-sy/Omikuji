@@ -19,25 +19,40 @@ def first():
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
-        a = random.choice(omikuzi_list)
-        if a == "大吉":
-            mov = '/static/videos/daikichi_f.mp4'
-        elif a == "吉":
-            mov = '/static/videos/kiti_f.mp4'
-        elif a == "中吉":
-            mov = '/static/videos/tyu_f.mp4'
-        elif a == "小吉":
-            mov = '/static/videos/sho_f.mp4'
-        elif a == "半吉":
-            mov = '/static/videos/han_f.mp4'
-        elif a == "末吉":
-            mov = '/static/videos/sue_f.mp4'
-        elif a == "凶":
+        # a = random.choice(omikuzi_list)
+        # if a == "大吉":
+        #     mov = '/static/videos/daikichi_f.mp4'
+        # elif a == "吉":
+        #     mov = '/static/videos/kiti_f.mp4'
+        # elif a == "中吉":
+        #     mov = '/static/videos/tyu_f.mp4'
+        # elif a == "小吉":89
+        #     mov = '/static/videos/sho_f.mp4'
+        # elif a == "半吉":
+        #     mov = '/static/videos/han_f.mp4'
+        # elif a == "末吉":
+        #     mov = '/static/videos/sue_f.mp4'
+        # elif a == "凶":
+        #     mov = '/static/videos/kyo_f.mp4'
+        # elif a == "大凶":
+        #     mov = '/static/videos/daikyo_f.mp4'
+        # else:
+        #     raise Exception('Error!')
+        pay = int(request.form['money'])
+        if pay <= 100:
+            mov =  '/static/videos/daikyo_f.mp4'
+        elif 100 < pay and pay <=200:
             mov = '/static/videos/kyo_f.mp4'
-        elif a == "大凶":
-            mov = '/static/videos/daikyo_f.mp4'
+        elif 200 < pay and pay <=400:
+            mov = '/static/videos/sue_f.mp4'
+        elif 400 < pay and pay <=800:
+            mov = '/static/videos/han_f.mp4'
+        elif 800 < pay and pay <=1600:
+            mov = '/static/videos/sho_f.mp4'
+        elif 1600 < pay and pay <= 3200:
+            mov = '/static/videos/tyu_f.mp4'
         else:
-            raise Exception('Error!')
+            mov = '/static/videos/daikichi_f.mp4'
         return render_template("result.html",a=mov)
     return render_template("index.html")
 
@@ -111,6 +126,44 @@ def registar():
 def logout():
     session.pop("user_name", None)
     return redirect(url_for("top",status="logout"))
+
+@app.route("/job")
+def job():
+    return render_template("job.html")
+@app.route("/job/thxmam")
+def thxmam():
+    #500円追加する処理
+    return render_template("thxmam.html")
+@app.route("/job/NYsgreet")
+def NYsgreet():
+    #3000円追加する処理
+    return render_template("NYsgreet.html")
+@app.route("/job/oosoji")
+def oosoji():
+    sukima_okane = [500, 1000, 2000, 5000]
+    okane = random.choice(sukima_okane)
+    #okaneの中身を追加する処理
+    return render_template("oosoji.html", okane=okane)
+@app.route("/job/nengajo")
+def nengajo():
+    tousen_okane = [1000, 2000, 3000, 5000]
+    tousen = random.choice(tousen_okane)
+    #tousenの中身を追加する処理
+    return render_template("nengajo.html", tousen=tousen)
+@app.route("/job/hatsuhinode")
+def hatushinode():
+    #1000円追加する処理
+    return render_template("hatsuhinode.html")
+@app.route("/job/hatsuyume")
+def hatsuyume():
+    kingakus = [0, 2000]
+    kingaku = random.choice(kingakus)
+    if kingaku == 0:
+        kekka = "悪い夢だった。お金は増えない。"
+    else:
+        #2000円追加する処理
+        kekka = "良い夢だった。2000円増えた。"
+    return render_template("hatsuyume.html", kekka=kekka)
 
 if __name__ == "__main__":
     app.run(debug=True)
