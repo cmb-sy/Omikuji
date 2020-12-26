@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>おみくじ</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>おみくじ</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+    </head>
+    
+    <body>
+        <div id="home" class="big-bg">
+            <header class ="page-header">
+                <h1>おみくじサイト</h1>
+            </header>
 
-    <div id="home" class="big-bg">
-        <header class ="page-header">
-            <h1>おみくじサイト</h1>
-        </header>
-
-        <div class="home-content wrapper">
-            <form action='/index' method='POST'>
-                <input type='submit' value='占う' class="button">
-            </form>
+            <div class="home-content wrapper">
+                <form action='/index' method='POST'>
+                    <input type='submit' value='占う' class="button">
+                </form>
         
-            <button type="button" onclick="history.back()">ログアウト</button>
-        </div>   
-
-    </div>
-
+                <!-- <button type="button" onclick="history.back()">ログアウト</button> -->
+                <a href="/top">ログアウト</a>  
+            </div>   
 
 
+        
+        </div>
     </body>
 </html>
 

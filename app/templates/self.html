@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="jp">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>自作おみくじサイト</title>
-</head>
-<body>
-<p>おみくじ名を書いてね</p>
-   <form action="/add" method="post">
+  </head>
+  <body>
+    <p>おみくじ名を書いてね</p>
+      <form action="/add" method="post">
         <input type="text" name="main_title" placeholder="title">
         <input type="submit" value="Add">
-    </form>
-    <!-- 追加終わり -->
-  {% for onegai in omikuzi_main_title %}
+      </form>
+      <!-- 追加終わり -->
+    {% for onegai in omikuzi_main_title %}
     <p>{{onegai.main_title}}</p>
     {% endfor %}
-
-</body>
+  </body>
 </html>
