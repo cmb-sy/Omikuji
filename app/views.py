@@ -8,49 +8,77 @@ from hashlib import sha256
 from app import key
 
 omikuzi_list = ["大吉","中吉","小吉","吉","半吉","末吉","凶","大凶"]
-
-@app.route("/plus",methods=["POST"])
-def plus():
-    m = User.query.filter_by().first()
-    m.balance += 500
-    db.session.add(m)
-    db.session.commit()
-    return render_template("main.html",m=m)
+pre_money = 0
 
 @app.route("/job")
 def job():
     return render_template("job.html")
 
-@app.route("/job/thxmam")
+@app.route("/job/thxmam",methods=["POST","GET"])
 def thxmam():
     #500円追加する処理
+    if request.method == "POST":
+        m = User.query.filter_by().first()
+        m.balance += 500
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
     return render_template("thxmam.html")
 
-@app.route("/job/NYsgreet")
+@app.route("/job/NYsgreet",methods=["POST","GET"])
 def NYsgreet():
     #3000円追加する処理
+    if request.method == "POST":
+        m = User.query.filter_by().first()
+        m.balance += 3000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
     return render_template("NYsgreet.html")
 
-@app.route("/job/oosoji")
+@app.route("/job/oosoji",methods=["POST","GET"])
 def oosoji():
     sukima_okane = [500, 1000, 2000, 5000]
     okane = random.choice(sukima_okane)
+    global pre_money
     #okaneの中身を追加する処理
+    if request.method == "POST":
+        m = User.query.filter_by().first()
+        m.balance += pre_money
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    pre_money = okane
     return render_template("oosoji.html", okane=okane)
 
-@app.route("/job/nengajo")
+@app.route("/job/nengajo",methods=["POST","GET"])
 def nengajo():
     tousen_okane = [1000, 2000, 3000, 5000]
     tousen = random.choice(tousen_okane)
     #tousenの中身を追加する処理
+    global pre_money
+    #okaneの中身を追加する処理
+    if request.method == "POST":
+        m = User.query.filter_by().first()
+        m.balance += pre_money
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    pre_money = tousen
     return render_template("nengajo.html", tousen=tousen)
 
-@app.route("/job/hatsuhinode")
+@app.route("/job/hatsuhinode",methods=["POST","GET"])
 def hatushinode():
     #1000円追加する処理
+    if request.method == "POST":
+        m = User.query.filter_by().first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
     return render_template("hatsuhinode.html")
 
-@app.route("/job/hatsuyume")
+@app.route("/job/hatsuyume",methods=["POST","GET"])
 def hatsuyume():
     kingakus = [0, 2000]
     kingaku = random.choice(kingakus)
@@ -58,6 +86,12 @@ def hatsuyume():
         kekka = "悪い夢だった。お金は増えない。"
     else:
         #2000円追加する処理
+        if request.method == "POST":
+            m = User.query.filter_by().first()
+            m.balance += 2000
+            db.session.add(m)
+            db.session.commit()
+            return render_template("main.html",m=m)
         kekka = "良い夢だった。2000円増えた。"
     return render_template("hatsuyume.html", kekka=kekka)
 
