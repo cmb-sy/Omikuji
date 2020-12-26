@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family:  "Yu Gothic Medium";
+}
+
+.home-content{
+    text-align: center;
+    margin-top: 20%;
+}
+
+.home-content p{
+    font-size: 1.125rem;
+}
+
+.big-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#home {
+    background-image: url(images/fire.jpg);
+    min-height: 140vh;
+}
+
+.button{
+    background: brown;
+    color: white;
+    font-size: 14pt;
+    padding-top: 6px;
+    margin-top: 20px;
+    line-height: 2em;
+    width: 15em;
+    border: 2px solid brown;    /* 枠の指定 */
+}
+
+.button:hover{
+    background: white;
+    color: brown;
+}

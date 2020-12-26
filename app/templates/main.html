@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>おみくじ</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
 </head>
-<h1>メインサイト</h1>
+
 <body>
-<a href=" http://127.0.0.1:5000/index"><button type="button">おみくじをする</button></a>
+    <div id="home" class="big-bg">
+        <header class ="page-header">
+            <h1>メインサイト</h1>
+        </header>
+        
+        <div class="home-content wrapper">
+            <h2 class="page title">あなたの運命は</h2>
+            <p>You can enjoy doing a variety of Omikuji.</p>
+            <a href=" http://127.0.0.1:5000/index"><button type="button" class="button">おみくじをする</button></a>
+        </div>
+    </div>
 </body>
+
 </html>

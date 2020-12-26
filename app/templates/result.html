@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>おみくじの結果</title>
+    <title>おみくじ</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
 </head>
-<h1>おみくじの結果</h1>
+
 <body>
-<p>{{a}}</p>
-<button type="button" onclick="history.back()">戻る</button>
+    <div id="home" class="big-bg">
+        <h1>おみくじの結果</h1>
+        <p>{{a}}</p>
+        <button type="button" onclick="history.back()" class="button">戻る</button>
+    </div>
 </body>
 </html>
