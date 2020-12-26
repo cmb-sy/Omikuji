@@ -1,5 +1,5 @@
 import random
-from app.models import OmikuziTitle,User
+from app.models import OmikuziTitle,User,OmikuziContent
 from app import db, app
 from flask import (
     render_template, request,session,
@@ -27,8 +27,11 @@ def index():
 @app.route("/add",methods=["POST"])
 def add():
     main_title = request.form["main_title"]
-    body = request.form["body"]
-    omikuzititles = OmikuziTitle(main_title,body)
+    # title = request.form["title"]
+    # content = request.form["content"]
+    omikuzititles = OmikuziTitle(main_title)
+    # omikuzicontents = OmikuziContent(title,content)
+    # omikuzititles.append(omikuzicontents)
     db.session.add(omikuzititles)
     db.session.commit()
     return self_omikuzi()
@@ -37,6 +40,7 @@ def add():
 def self_omikuzi():
         omikuzi_main_title = OmikuziTitle.query.all()
         return render_template("self.html", omikuzi_main_title=omikuzi_main_title)
+
 
 @app.route("/top")
 def top():
@@ -80,7 +84,6 @@ def registar():
         db.session.commit()
         session["user_name"] = user_name
         return redirect(url_for("index"))
-
 
 @app.route("/logout")
 def logout():
