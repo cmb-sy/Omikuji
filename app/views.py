@@ -134,7 +134,7 @@ def index():
             db.session.add(m)
             db.session.commit()
             if pay <= 100:
-                mov =  '/static/videos/daikyo_f.mp4'
+                mov = '/static/videos/daikyo_f.mp4'
             elif 100 < pay and pay <=200:
                 mov = '/static/videos/kyo_f.mp4'
             elif 200 < pay and pay <=400:
@@ -145,8 +145,10 @@ def index():
                 mov = '/static/videos/sho_f.mp4'
             elif 1600 < pay and pay <= 3200:
                 mov = '/static/videos/tyu_f.mp4'
+            elif 3200 < pay and pay <= 6400:
+                mov = '/static/videos/kiti_f.mp4'
             else:
-                mov = '/static/videos/daikichi_f.mp4'
+                mov = '/static/videos/dikichi_f.mp4'
             return render_template("result.html",a=mov)
     return render_template("index.html")
 
