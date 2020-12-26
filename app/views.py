@@ -20,8 +20,26 @@ def first():
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
-        main_omikuzi = random.choice(omikuzi_list)
-        return render_template("result.html",main_omikuzi=main_omikuzi)
+        a = random.choice(omikuzi_list)
+        if a == "大吉":
+            mov = '/static/videos/daikichi_f.mp4'
+        elif a == "吉":
+            mov = '/static/videos/kiti_f.mp4'
+        elif a == "中吉":
+            mov = '/static/videos/tyu_f.mp4'
+        elif a == "小吉":
+            mov = '/static/videos/sho_f.mp4'
+        elif a == "半吉":
+            mov = '/static/videos/han_f.mp4'
+        elif a == "末吉":
+            mov = '/static/videos/sue_f.mp4'
+        elif a == "凶":
+            mov = '/static/videos/kyo_f.mp4'
+        elif a == "大凶":
+            mov = '/static/videos/daikyo_f.mp4'
+        else:
+            raise Exception('Error!')
+        return render_template("result.html",a=mov)
     return render_template("index.html")
 
 @app.route("/add",methods=["POST"])
