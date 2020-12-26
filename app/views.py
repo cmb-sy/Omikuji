@@ -98,7 +98,8 @@ def hatsuyume():
 @app.route("/",methods=["POST","GET"])
 def first():
     if "user_name" in session:
-        return redirect(url_for("main"))
+        m = User.query.filter_by(user_name="user_name").first()
+        return render_template("main.html", m=m)
     else:
         return redirect(url_for("top",status="logout"))
 
@@ -170,17 +171,6 @@ def self_omikuzi():
         return render_template("self.html", omikuzi_main_title=omikuzi_main_title)
 
 
-
-
-
-
-@app.route("/main")
-def main():
-    m = User.query.filter_by().first()
-    return render_template("main.html",m=m)
-
-
-
 @app.route("/top")
 def top():
     status = request.args.get("status")
@@ -195,7 +185,8 @@ def login():
         hashed_password = sha256((user_name + password + key.SALT).encode("utf-8")).hexdigest()
         if user.hashed_password == hashed_password:
             session["user_name"] = user_name
-            return redirect(url_for("main"))
+            m = User.query.filter_by(user_name="user_name").first()
+            return render_template("main.html", m=m)
         else:
             return redirect(url_for("top",status="wrong_password"))
     else:
@@ -214,13 +205,14 @@ def registar():
         return redirect(url_for("newcomer",status="exist_user"))
     else:
         password = request.form["password"]
-        balance = 0
         hashed_password = sha256((user_name + password + key.SALT).encode("utf-8")).hexdigest()
-        user = User(user_name, hashed_password, balance)
+        user = User(user_name, hashed_password, balance=0)
+        user.balance = 0
         db.session.add(user)
         db.session.commit()
         session["user_name"] = user_name
-        return redirect(url_for("main"))
+        m = User.query.filter_by(user_name=user_name).first()
+        return render_template("main.html", m=m)
 
 @app.route("/logout")
 def logout():
