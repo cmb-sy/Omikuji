@@ -22,14 +22,6 @@ class OmikuziContent(db.Model):
     content = db.Column(db.Text)
     omikuzititle = relationship("OmikuziTitle")
 
-# class Money(db.Model):
-#     __tablename_ = "money"
-#     id = db.Column(db.Integer, primary_key=True)
-#     balance = db.Column(db.Integer)
-#
-#     def __init__(self,balance):
-#         self.balance = balance
-
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(Integer, primary_key=True)
