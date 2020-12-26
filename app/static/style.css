@@ -7,6 +7,7 @@ body{
     font-family:  "Yu Gothic Medium";
 }
 
+/* all */
 .home-content{
     text-align: center;
     margin-top: 20%;
@@ -40,5 +41,10 @@ body{
 .button:hover{
     background: white;
     color: brown;
+}
+
+/* result.html */
+.bf-video{
+    
 }
 
