@@ -125,21 +125,29 @@ def index():
         # else:
         #     raise Exception('Error!')
         pay = int(request.form['money'])
-        if pay <= 100:
-            mov =  '/static/videos/daikyo_f.mp4'
-        elif 100 < pay and pay <=200:
-            mov = '/static/videos/kyo_f.mp4'
-        elif 200 < pay and pay <=400:
-            mov = '/static/videos/sue_f.mp4'
-        elif 400 < pay and pay <=800:
-            mov = '/static/videos/han_f.mp4'
-        elif 800 < pay and pay <=1600:
-            mov = '/static/videos/sho_f.mp4'
-        elif 1600 < pay and pay <= 3200:
-            mov = '/static/videos/tyu_f.mp4'
+        m = User.query.filter_by().first()
+        m.balance -= pay
+        if m.balance < 0:
+            content = "お金が足りません"
+            return render_template("index.html", content=content)
         else:
-            mov = '/static/videos/daikichi_f.mp4'
-        return render_template("result.html",a=mov)
+            db.session.add(m)
+            db.session.commit()
+            if pay <= 100:
+                mov =  '/static/videos/daikyo_f.mp4'
+            elif 100 < pay and pay <=200:
+                mov = '/static/videos/kyo_f.mp4'
+            elif 200 < pay and pay <=400:
+                mov = '/static/videos/sue_f.mp4'
+            elif 400 < pay and pay <=800:
+                mov = '/static/videos/han_f.mp4'
+            elif 800 < pay and pay <=1600:
+                mov = '/static/videos/sho_f.mp4'
+            elif 1600 < pay and pay <= 3200:
+                mov = '/static/videos/tyu_f.mp4'
+            else:
+                mov = '/static/videos/daikichi_f.mp4'
+            return render_template("result.html",a=mov)
     return render_template("index.html")
 
 @app.route("/add",methods=["POST"])

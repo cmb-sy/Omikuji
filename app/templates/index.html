@@ -11,13 +11,14 @@
             <header class ="page-header">
                 <h1>おみくじサイト</h1>
             </header>
-
+<p>{{content}}</p>
             <div class="home-content wrapper">
                 <form action="/index" method="POST">
                     <input type="number" name="money" placeholder="お賽銭" min="0"></br>
                     <input type="submit" value="占う" class="button">
                 </form>
                 <button type="button" onclick="history.back()">ログアウト</button>
+                <a href=" http://127.0.0.1:5000/main"><button type="button" class="button">メインページへ戻る</button></a>
             </div>   
 
         </div>
