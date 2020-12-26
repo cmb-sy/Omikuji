@@ -25,9 +25,9 @@ class OmikuziContent(db.Model):
 class Money(db.Model):
     __tablename_ = "money"
     id = db.Column(db.Integer, primary_key=True)
-    balance = db.Column(db.Integer, default=0)
+    balance = db.Column(db.Integer)
 
-    def __init__(self,balance=0):
+    def __init__(self,balance):
         self.balance = balance
 
 class User(db.Model):
