@@ -17,6 +17,10 @@ def first():
     else:
         return redirect(url_for("top",status="logout"))
 
+@app.route("/job")
+def job():
+    return render_template("job.html")
+
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
