@@ -16,6 +16,50 @@ def first():
     else:
         return redirect(url_for("top",status="logout"))
 
+@app.route("/job")
+def job():
+    return render_template("job.html")
+
+@app.route("/job/thxmam")
+def thxmam():
+    #500円追加する処理
+    return render_template("thxmam.html")
+
+@app.route("/job/NYsgreet")
+def NYsgreet():
+    #3000円追加する処理
+    return render_template("NYsgreet.html")
+
+@app.route("/job/oosoji")
+def oosoji():
+    sukima_okane = [500, 1000, 2000, 5000]
+    okane = random.choice(sukima_okane)
+    #okaneの中身を追加する処理
+    return render_template("oosoji.html", okane=okane)
+
+@app.route("/job/nengajo")
+def nengajo():
+    tousen_okane = [1000, 2000, 3000, 5000]
+    tousen = random.choice(tousen_okane)
+    #tousenの中身を追加する処理
+    return render_template("nengajo.html", tousen=tousen)
+
+@app.route("/job/hatsuhinode")
+def hatushinode():
+    #1000円追加する処理
+    return render_template("hatsuhinode.html")
+
+@app.route("/job/hatsuyume")
+def hatsuyume():
+    kingakus = [0, 2000]
+    kingaku = random.choice(kingakus)
+    if kingaku == 0:
+        kekka = "悪い夢だった。お金は増えない。"
+    else:
+        #2000円追加する処理
+        kekka = "良い夢だった。2000円増えた。"
+    return render_template("hatsuyume.html", kekka=kekka)
+
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
