@@ -105,7 +105,11 @@ def first():
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
-        pay = int(request.form['money'])
+        try:
+            pay = int(request.form['money'])
+        except ValueError:
+            content = "正しい金額を入力してください"
+            return render_template("index.html", content=content)
         m = User.query.filter_by().first()
         m.balance -= pay
         if m.balance < 0:
