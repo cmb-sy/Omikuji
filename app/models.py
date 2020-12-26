@@ -22,13 +22,20 @@ class OmikuziContent(db.Model):
     content = db.Column(db.Text)
     omikuzititle = relationship("OmikuziTitle")
 
+class Money(db.Model):
+    __tablename_ = "money"
+    id = db.Column(db.Integer, primary_key=True)
+    balance = db.Column(db.Integer)
+
+    def __init__(self,balance):
+        self.balance = balance
+
 class User(db.Model):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    user_name = Column(String(128), unique=True)
-    hashed_password = Column(String(128))
+    id = db.Column(Integer, primary_key=True)
+    user_name = db.Column(String(128), unique=True)
+    hashed_password = db.Column(String(128))
 
-    # テーブル間の紐付けをしている
     def __init__(self,user_name=None ,hashed_password=None):
         self.user_name = user_name
         self.hashed_password = hashed_password
