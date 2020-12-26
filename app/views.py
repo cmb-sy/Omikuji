@@ -17,18 +17,19 @@ def job():
 def thxmam():
     #500円追加する処理
     if request.method == "POST":
-        m = User.query.filter_by().first()
+        m = User.query.filter().order_by(User.id.desc()).first()
         m.balance += 500
         db.session.add(m)
         db.session.commit()
         return render_template("main.html",m=m)
-    return render_template("thxmam.html")
+    else:
+        return render_template("thxmam.html")
 
 @app.route("/job/NYsgreet",methods=["POST","GET"])
 def NYsgreet():
     #3000円追加する処理
     if request.method == "POST":
-        m = User.query.filter_by().first()
+        m = User.query.filter().order_by(User.id.desc()).first()
         m.balance += 3000
         db.session.add(m)
         db.session.commit()
@@ -42,7 +43,7 @@ def oosoji():
     global pre_money
     #okaneの中身を追加する処理
     if request.method == "POST":
-        m = User.query.filter_by().first()
+        m = User.query.filter().order_by(User.id.desc()).first()
         m.balance += pre_money
         db.session.add(m)
         db.session.commit()
@@ -58,7 +59,7 @@ def nengajo():
     global pre_money
     #okaneの中身を追加する処理
     if request.method == "POST":
-        m = User.query.filter_by().first()
+        m = User.query.filter().order_by(User.id.desc()).first()
         m.balance += pre_money
         db.session.add(m)
         db.session.commit()
@@ -70,7 +71,7 @@ def nengajo():
 def hatushinode():
     #1000円追加する処理
     if request.method == "POST":
-        m = User.query.filter_by().first()
+        m = User.query.filter().order_by(User.id.desc()).first()
         m.balance += 1000
         db.session.add(m)
         db.session.commit()
@@ -86,7 +87,7 @@ def hatsuyume():
     else:
         #2000円追加する処理
         if request.method == "POST":
-            m = User.query.filter_by().first()
+            m = User.query.filter().order_by(User.id.desc()).first()
             m.balance += 2000
             db.session.add(m)
             db.session.commit()
