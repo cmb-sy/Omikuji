@@ -1,5 +1,5 @@
 import random
-from app.models import OmikuziTitle,User,OmikuziContent,Money
+from app.models import OmikuziTitle,User,OmikuziContent
 from app import db, app
 from flask import (
     render_template, request,session,
@@ -60,14 +60,13 @@ def self_omikuzi():
 
 @app.route("/main")
 def main():
-    m = Money.query.all()
+    m = User.query.filter_by().first()
     return render_template("main.html",m=m)
 
 @app.route("/top")
 def top():
     status = request.args.get("status")
     return render_template("top.html",status=status)
-
 
 @app.route("/login",methods=["post"])
 def login():
@@ -97,11 +96,9 @@ def registar():
         return redirect(url_for("newcomer",status="exist_user"))
     else:
         password = request.form["password"]
-        hashed_password = sha256((user_name + password + key.SALT).encode("utf-8")).hexdigest()
-        user = User(user_name, hashed_password)
         balance = 0
-        money = Money(balance)
-        db.session.add(money)
+        hashed_password = sha256((user_name + password + key.SALT).encode("utf-8")).hexdigest()
+        user = User(user_name, hashed_password,balance)
         db.session.add(user)
         db.session.commit()
         session["user_name"] = user_name

@@ -22,23 +22,25 @@ class OmikuziContent(db.Model):
     content = db.Column(db.Text)
     omikuzititle = relationship("OmikuziTitle")
 
-class Money(db.Model):
-    __tablename_ = "money"
-    id = db.Column(db.Integer, primary_key=True)
-    balance = db.Column(db.Integer)
-
-    def __init__(self,balance):
-        self.balance = balance
+# class Money(db.Model):
+#     __tablename_ = "money"
+#     id = db.Column(db.Integer, primary_key=True)
+#     balance = db.Column(db.Integer)
+#
+#     def __init__(self,balance):
+#         self.balance = balance
 
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(Integer, primary_key=True)
     user_name = db.Column(String(128), unique=True)
     hashed_password = db.Column(String(128))
+    balance = db.Column(db.Integer)
 
-    def __init__(self,user_name=None ,hashed_password=None):
+    def __init__(self,user_name=None ,hashed_password=None,balance=None):
         self.user_name = user_name
         self.hashed_password = hashed_password
+        self.balance = balance
 
 def init():
     db.create_all()
