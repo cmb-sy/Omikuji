@@ -8,7 +8,7 @@
 <body>
 
     <div id="home" class="big-bg">
-        <header class ="page-header">
+        <header class ="page-header wrapper">
             <h1>メインサイト</h1>
         </header>
         <div class="home-content wrapper">
@@ -19,7 +19,7 @@
             <form action='/self_omikuzi' method='POST'>
             <input type='submit' value='自作する'/></form>
             <a href="/logout">ログアウトする</a>
-            <p>{{m.balance}}円</p>
+            <div class="balance">{{m.balance}}円</div>
         </div>
     </div>
 
