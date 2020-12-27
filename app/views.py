@@ -13,6 +13,58 @@ pre_money = 0
 def job():
     return render_template("job.html")
 
+@app.route("/job/neshogatu")
+def neshogatu():
+    return render_template("neshogatu.html")
+
+@app.route("/job/neshogatu/hayaoki", methods=["POST","GET"])
+def hayaoki():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("hayaoki.html")
+
+@app.route("/job/neshogatu/asayu", methods=["POST","GET"])
+def asayu():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 2000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("asayu.html")
+
+@app.route("/job/neshogatu/hagoita", methods=["POST","GET"])
+def hagoita():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1500
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("hagoita.html")
+
+@app.route("/job/neshogatu/takoage", methods=["POST","GET"])
+def takoage():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 3000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("takoage.html")
+
+@app.route("/job/kenkoiji")
+def kenkoiji():
+    return render_template("kenkoiji.html")
+
 @app.route("/job/thxmam",methods=["POST","GET"])
 def thxmam():
     #500円追加する処理
@@ -42,6 +94,7 @@ def oosoji():
     okane = random.choice(sukima_okane)
     global pre_money
     #okaneの中身を追加する処理
+    print(okane)
     if request.method == "POST":
         m = User.query.filter().order_by(User.id.desc()).first()
         m.balance += pre_money

@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>おみくじ</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='style_for_nenngajo.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
 </head>
 
 <body>
 
     <div id="home" class="big-bg">
         <header class ="page-header">
-            <h1>年賀状</h1>
+            <h1>羽子板<p><font size=5pt>羽子板をして1500円ゲット!</font></p></h1>
         </header>
 
-        <div style="text-align:center;margin-top: 12em;">
-            <img src = "/static/images/nengajo.jpg">
+        <div style="text-align:center;margin-top: 5em;">
+            <img src = "/static/images/hagoita.png">
         </div><br/>
 
-        <div class="box16">
-            <p>年賀状を受け取ったら当選していた!{{tousen}}円ゲット!</p>
-        </div>
-
         <div class="home-content wrapper">
-            <form action='/job/nengajo' method='POST'>
+            <form action='/job/neshogatu/hagoita' method='POST'>
                 <input type='submit' value='受け取る' class="button">
             </form>
             <button type="button" onclick="history.back()" class="button">戻る</button>
