@@ -1,5 +1,6 @@
 # おみくじアプリのレポジトリ
 最初にpythonを起動して
+完全な完成版ではありません。また、Deployしてません
  ```
  from app.models import init
  init()
