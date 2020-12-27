@@ -243,7 +243,8 @@ def hatsuyume():
 @app.route("/",methods=["POST","GET"])
 def first():
     if "user_name" in session:
-        m = User.query.filter_by(user_name="user_name").first()
+        # m = User.query.filter_by(user_name="user_name").first()
+        m = User.query.filter().order_by(User.id.desc()).first()
         content = "お賽銭を入れてね"
         if request.method == "POST":
             try:
@@ -252,7 +253,7 @@ def first():
                 content = "正しい金額を入力してください"
                 return render_template("main.html", m=m, content=content)
 
-            m = User.query.filter_by().first()
+            # m = User.query.filter_by().first()
             m.balance -= pay
             if m.balance < 0:
                 content = "お金が足りません"
