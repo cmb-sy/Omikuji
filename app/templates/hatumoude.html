@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>おみくじ</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style_for_thxmam.css')}}">
+</head>
+
+<body>
+
+    <div id="home" class="big-bg">
+        <header class ="page-header">
+            <h1>初詣</h1>
+        </header>
+
+        <div style="text-align:center;margin-top: 5em;">
+            <img src = "/static/images/nengajo.jpg">
+        </div><br/>
+
+        <div class="box16">
+            <p>初詣に行った。1000円もらった</p>
+        </div>
+
+        <div class="home-content wrapper">
+            <form action='/job/hatumoude' method='POST'>
+                <input type='submit' value='受け取る' class="button">
+            </form>
+            <button type="button" onclick="history.back()" class="button">戻る</button>
+        </div>
+    </div>
+</body>
+</html>

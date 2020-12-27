@@ -9,9 +9,105 @@ from app import key
 
 pre_money = 0
 
+@app.route("/job/day")
+def day():
+    return render_template("day.html")
+
+@app.route("/job/only_one")
+def only_one():
+    return render_template("only_one.html")
+
 @app.route("/job")
 def job():
     return render_template("job.html")
+
+@app.route("/job/ema",methods=["POST","GET"])
+def ema():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("ema.html")
+
+@app.route("/job/grandma",methods=["POST","GET"])
+def grandma():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("grandma.html")
+
+@app.route("/job/nisemono",methods=["POST","GET"])
+def nisemono():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 500
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("nisemono.html")
+
+@app.route("/job/otosidama",methods=["POST","GET"])
+def otosidama():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("otosidama.html")
+
+@app.route("/job/hatumoude",methods=["POST","GET"])
+def hatumoude():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("hatumoude.html")
+
+@app.route("/job/oseti",methods=["POST","GET"])
+def oseti():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("oseti.html")
+
+@app.route("/job/kakizome",methods=["POST","GET"])
+def kakizome():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 1000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("kakizome.html")
+
+@app.route("/job/hurusato",methods=["POST","GET"])
+def hurusato():
+    if request.method == "POST":
+        m = User.query.filter().order_by(User.id.desc()).first()
+        m.balance += 3000
+        db.session.add(m)
+        db.session.commit()
+        return render_template("main.html",m=m)
+    else:
+        return render_template("hurusato.html")
 
 @app.route("/job/thxmam",methods=["POST","GET"])
 def thxmam():
@@ -106,11 +202,16 @@ def first():
 @app.route("/index",methods=["POST","GET"])
 def index():
     if request.method == "POST":
+<<<<<<< HEAD
         try:
             pay = int(request.form['money'])
         except ValueError:
             content = "正しい金額を入力してください"
             return render_template("index.html", content=content)
+=======
+
+        pay = int(request.form['money'])
+>>>>>>> make
         m = User.query.filter_by().first()
         m.balance -= pay
         if m.balance < 0:
@@ -136,7 +237,9 @@ def index():
             else:
                 mov = '/static/videos/dikichi_f.mp4'
             return render_template("result.html",a=mov)
-    return render_template("index.html")
+    s = nengajo
+    filename = "{}.jpg".format(s)
+    return render_template("index.html",filename=filename)
 
 @app.route("/add",methods=["POST"])
 def add():
@@ -154,7 +257,6 @@ def add():
 def self_omikuzi():
         omikuzi_main_title = OmikuziTitle.query.all()
         return render_template("self.html", omikuzi_main_title=omikuzi_main_title)
-
 
 @app.route("/top")
 def top():
