@@ -22,7 +22,7 @@ body{
 }
 
 #home {
-    background-image: url(images/back_yume.jpg);
+    background-image: url(images/h_yume.jpg);
     min-height: 140vh;
 }
 
@@ -89,3 +89,13 @@ body{
     margin: 0; 
     padding: 0;
 }
+
+h1 {
+    color: #000000;/*文字色*/
+    border: solid 3px #777777;/*線色*/
+    padding: 0.5em;/*文字周りの余白*/
+    border-radius: 0.5em;/*角丸*/
+    background-color: #ffffff;
+    width: 1000px;
+    margin: 0px auto;
+  }

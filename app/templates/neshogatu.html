@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>おみくじ</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+</head>
+
+<body>
+
+    <div id="home" class="big-bg">
+        <header class ="page-header">
+            <h1>寝正月防止</h1>
+        </header>
+
+        <div class="home-content wrapper">
+            <a href=" http://127.0.0.1:5000/job/neshogatu/hayaoki"><button type="button" class="button">早起きする</button></a>
+            <a href=" http://127.0.0.1:5000/job/neshogatu/asayu"><button type="button" class="button">朝湯に入る</button></a></br>
+            <a href=" http://127.0.0.1:5000/job/neshogatu/hagoita"><button type="button" class="button">羽子板で遊ぶ</button></a>
+            <a href=" http://127.0.0.1:5000/job/neshogatu/takoage"><button type="button" class="button">凧揚げをする</button></a></br>
+            <button type="button" onclick="history.back()" class="button">戻る</button>
+        </div>
+    </div>
+
+</body>
+</html>
