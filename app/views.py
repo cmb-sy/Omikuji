@@ -56,7 +56,7 @@ def grandma():
         db.session.commit()
         return render_template("main.html",m=m)
     else:
-        return render_template("hayaoki.html")
+        return render_template("grandma.html")
 
 @app.route("/job/neshogatu/asayu", methods=["POST","GET"])
 def asayu():
@@ -262,17 +262,17 @@ def first():
                 db.session.commit()
                 if pay <= 100:
                     mov = '/static/videos/daikyo_f.mp4'
-                elif 100 < pay and pay <=200:
+                elif 100 < pay and pay <=400:
                     mov = '/static/videos/kyo_f.mp4'
-                elif 200 < pay and pay <=400:
-                    mov = '/static/videos/sue_f.mp4'
                 elif 400 < pay and pay <=800:
+                    mov = '/static/videos/sue_f.mp4'
+                elif 800 < pay and pay <=1200:
                     mov = '/static/videos/han_f.mp4'
-                elif 800 < pay and pay <=1600:
+                elif 1200 < pay and pay <=2000:
                     mov = '/static/videos/sho_f.mp4'
-                elif 1600 < pay and pay <= 3200:
+                elif 2000 < pay and pay <= 10000:
                     mov = '/static/videos/tyu_f.mp4'
-                elif 3200 < pay and pay <= 6400:
+                elif 10000 < pay and pay <= 100000:
                     mov = '/static/videos/kiti_f.mp4'
                 else:
                     mov = '/static/videos/dikichi_f.mp4'
@@ -281,52 +281,10 @@ def first():
     else:
         return redirect(url_for("top",status="logout"))
 
-# @app.route("/index",methods=["POST","GET"])
-# def index():
-#     if request.method == "POST":
-#         try:
-#             pay = int(request.form['money'])
-#         except ValueError:
-#             content = "正しい金額を入力してください"
-#             return render_template("index.html", content=content)
-
-#         m = User.query.filter_by().first()
-#         m.balance -= pay
-#         if m.balance < 0:
-#             content = "お金が足りません"
-#             return render_template("index.html", content=content)
-#         else:
-#             db.session.add(m)
-#             db.session.commit()
-#             if pay <= 100:
-#                 mov = '/static/videos/daikyo_f.mp4'
-#             elif 100 < pay and pay <=200:
-#                 mov = '/static/videos/kyo_f.mp4'
-#             elif 200 < pay and pay <=400:
-#                 mov = '/static/videos/sue_f.mp4'
-#             elif 400 < pay and pay <=800:
-#                 mov = '/static/videos/han_f.mp4'
-#             elif 800 < pay and pay <=1600:
-#                 mov = '/static/videos/sho_f.mp4'
-#             elif 1600 < pay and pay <= 3200:
-#                 mov = '/static/videos/tyu_f.mp4'
-#             elif 3200 < pay and pay <= 6400:
-#                 mov = '/static/videos/kiti_f.mp4'
-#             else:
-#                 mov = '/static/videos/dikichi_f.mp4'
-#             return render_template("result.html",a=mov)
-#     s = nengajo
-#     filename = "{}.jpg".format(s)
-#     return render_template("index.html",filename=filename)
-
 @app.route("/add",methods=["POST"])
 def add():
     main_title = request.form["main_title"]
-    # title = request.form["title"]
-    # content = request.form["content"]
     omikuzititles = OmikuziTitle(main_title)
-    # omikuzicontents = OmikuziContent(title,content)
-    # omikuzititles.append(omikuzicontents)
     db.session.add(omikuzititles)
     db.session.commit()
     return self_omikuzi()
