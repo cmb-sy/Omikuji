@@ -65,7 +65,7 @@ def asayu():
         m.balance += 2000
         db.session.add(m)
         db.session.commit()
-        return render_template("main.html")
+        return render_template("main.html",m=m)
     else:
         return render_template("asayu.html")
 
@@ -244,48 +244,80 @@ def hatsuyume():
 def first():
     if "user_name" in session:
         m = User.query.filter_by(user_name="user_name").first()
-        return render_template("main.html", m=m)
+        content = "お賽銭を入れてね"
+        if request.method == "POST":
+            try:
+                pay = int(request.form['money'])
+            except ValueError:
+                content = "正しい金額を入力してください"
+                return render_template("main.html", m=m, content=content)
+
+            m = User.query.filter_by().first()
+            m.balance -= pay
+            if m.balance < 0:
+                content = "お金が足りません"
+                return render_template("main.html", m=m,content=content)
+            else:
+                db.session.add(m)
+                db.session.commit()
+                if pay <= 100:
+                    mov = '/static/videos/daikyo_f.mp4'
+                elif 100 < pay and pay <=200:
+                    mov = '/static/videos/kyo_f.mp4'
+                elif 200 < pay and pay <=400:
+                    mov = '/static/videos/sue_f.mp4'
+                elif 400 < pay and pay <=800:
+                    mov = '/static/videos/han_f.mp4'
+                elif 800 < pay and pay <=1600:
+                    mov = '/static/videos/sho_f.mp4'
+                elif 1600 < pay and pay <= 3200:
+                    mov = '/static/videos/tyu_f.mp4'
+                elif 3200 < pay and pay <= 6400:
+                    mov = '/static/videos/kiti_f.mp4'
+                else:
+                    mov = '/static/videos/dikichi_f.mp4'
+                return render_template("result.html",a=mov)
+        return render_template("main.html", m=m, content=content)
     else:
         return redirect(url_for("top",status="logout"))
 
-@app.route("/index",methods=["POST","GET"])
-def index():
-    if request.method == "POST":
-        try:
-            pay = int(request.form['money'])
-        except ValueError:
-            content = "正しい金額を入力してください"
-            return render_template("index.html", content=content)
+# @app.route("/index",methods=["POST","GET"])
+# def index():
+#     if request.method == "POST":
+#         try:
+#             pay = int(request.form['money'])
+#         except ValueError:
+#             content = "正しい金額を入力してください"
+#             return render_template("index.html", content=content)
 
-        pay = int(request.form['money'])
-        m = User.query.filter_by().first()
-        m.balance -= pay
-        if m.balance < 0:
-            content = "お金が足りません"
-            return render_template("index.html", content=content)
-        else:
-            db.session.add(m)
-            db.session.commit()
-            if pay <= 100:
-                mov = '/static/videos/daikyo_f.mp4'
-            elif 100 < pay and pay <=200:
-                mov = '/static/videos/kyo_f.mp4'
-            elif 200 < pay and pay <=400:
-                mov = '/static/videos/sue_f.mp4'
-            elif 400 < pay and pay <=800:
-                mov = '/static/videos/han_f.mp4'
-            elif 800 < pay and pay <=1600:
-                mov = '/static/videos/sho_f.mp4'
-            elif 1600 < pay and pay <= 3200:
-                mov = '/static/videos/tyu_f.mp4'
-            elif 3200 < pay and pay <= 6400:
-                mov = '/static/videos/kiti_f.mp4'
-            else:
-                mov = '/static/videos/dikichi_f.mp4'
-            return render_template("result.html",a=mov)
-    s = nengajo
-    filename = "{}.jpg".format(s)
-    return render_template("index.html",filename=filename)
+#         m = User.query.filter_by().first()
+#         m.balance -= pay
+#         if m.balance < 0:
+#             content = "お金が足りません"
+#             return render_template("index.html", content=content)
+#         else:
+#             db.session.add(m)
+#             db.session.commit()
+#             if pay <= 100:
+#                 mov = '/static/videos/daikyo_f.mp4'
+#             elif 100 < pay and pay <=200:
+#                 mov = '/static/videos/kyo_f.mp4'
+#             elif 200 < pay and pay <=400:
+#                 mov = '/static/videos/sue_f.mp4'
+#             elif 400 < pay and pay <=800:
+#                 mov = '/static/videos/han_f.mp4'
+#             elif 800 < pay and pay <=1600:
+#                 mov = '/static/videos/sho_f.mp4'
+#             elif 1600 < pay and pay <= 3200:
+#                 mov = '/static/videos/tyu_f.mp4'
+#             elif 3200 < pay and pay <= 6400:
+#                 mov = '/static/videos/kiti_f.mp4'
+#             else:
+#                 mov = '/static/videos/dikichi_f.mp4'
+#             return render_template("result.html",a=mov)
+#     s = nengajo
+#     filename = "{}.jpg".format(s)
+#     return render_template("index.html",filename=filename)
 
 @app.route("/add",methods=["POST"])
 def add():
